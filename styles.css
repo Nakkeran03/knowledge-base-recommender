@@ -1,0 +1,60 @@
+/* basic reset + typography */
+* { box-sizing: border-box; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fafafa;
+  margin: 0;
+  color: #222;
+}
+
+/* header / footer */
+header, footer {
+  background: #004aad;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* main layout - two panels side-by-side */
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* panels */
+.kb-panel, .ticket-panel {
+  flex: 1;
+  background: white;
+  padding: 18px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+h1 { margin: 0; font-size: 1.6rem; }
+h2 {
+  color: #004aad;
+  margin-top: 0;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 6px;
+}
+
+/* textarea */
+textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+  margin-top: 10px;
+}
+
+/* nicer highlight for matches */
+mark {
+  background: #ffeb3b;     /* warm yellow */
+  padding: 0 4px;
+  border-radius: 3px;
+  color: #111;
+  font-weight: 700;
+}
