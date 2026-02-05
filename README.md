@@ -30,3 +30,11 @@ usage patterns, helping agents resolve tickets more efficiently.
 - Backend integration
 - Improved recommendation logic
 - Analytics on KB usage
+
+## Screenshots
+
+### Home Screen
+![Home Screen](screenshots/Home.png)
+
+### Sample Recommendation Output
+![Recommendation Output](screenshots/Result.png)
