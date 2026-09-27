@@ -170,13 +170,30 @@ async function copyArticle(id) {
   const article = loadKBs().find(item => item.id === id);
   if (!article) return;
   const text = article.title + '\n\n' + article.body;
+  let copied = false;
   try {
-    await navigator.clipboard.writeText(text);
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      copied = true;
+    }
+  } catch (error) { /* use the local copy fallback below */ }
+  if (!copied) {
+    const field = document.createElement('textarea');
+    field.value = text;
+    field.setAttribute('readonly', '');
+    field.style.position = 'fixed';
+    field.style.opacity = '0';
+    document.body.appendChild(field);
+    field.select();
+    try { copied = document.execCommand('copy'); } catch (error) { copied = false; }
+    field.remove();
+  }
+  if (copied) {
     incrementUsage(id);
     showToast('Helpful steps copied — ready for your reply.');
-  } catch (error) {
+  } else {
     openDetails(id);
-    showToast('Open the article to copy its helpful steps.');
+    showToast('Select the helpful steps above to copy them.');
   }
 }
 function incrementUsage(id) {
@@ -274,3 +291,4 @@ function init() {
   });
 }
 document.addEventListener('DOMContentLoaded', init);
+
