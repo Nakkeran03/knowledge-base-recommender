@@ -1,34 +1,139 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Knowledge Base Recommender</title>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6ff">
+  <meta name="description" content="A friendly knowledge base workspace for faster, more confident support.">
+  <title>Patchwork — Knowledge base workspace</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Knowledge Base Recommender</h1>
-  </header>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#" aria-label="Patchwork home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M11 9.5h18a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3v-18a3 3 0 0 1 3-3Z"/><path d="M14 17h12M14 22h8M14 27h10"/><path d="m26.5 8 .7-3M31 11l2.5-2"/></svg></span>
+        <span class="brand-copy"><strong>patchwork</strong><small>answer desk</small></span>
+      </a>
 
-  <main class="container">
-    <section class="kb-panel">
-      <h2>Knowledge Base Articles</h2>
-      <p>This area will later show your KB articles.</p>
-    </section>
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav class="nav-list">
+        <a class="nav-link active" href="#find" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.3 4.3M8.3 10.8h5M10.8 8.3v5"/></svg>
+          <span>Find an answer</span><span class="nav-dot"></span>
+        </a>
+        <a class="nav-link" href="#library">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5Z"/><path d="M4 5.5v16M8 7h8M8 11h7"/></svg>
+          <span>Knowledge library</span>
+        </a>
+      </nav>
 
-    <section class="ticket-panel">
-      <h2>Ticket Input</h2>
-      <textarea id="ticketInput" placeholder="Paste your ticket text here..." rows="6"></textarea>
-      <p>Recommended KBs will appear here later.</p>
-    </section>
-  </main>
+      <div class="sidebar-note">
+        <span class="note-emoji" aria-hidden="true">✦</span>
+        <strong>Good answers make good days.</strong>
+        <p>Find the right fix, then get back to the person who needs you.</p>
+      </div>
 
-  <footer>
-    <p>Created by Nakkeran</p>
-  </footer>
+      <div class="sidebar-bottom">
+        <div class="avatar-stack" aria-hidden="true"><span>J</span><span>M</span><span>A</span><b>+</b></div>
+        <div><strong>One helpful team</strong><small>Agents &amp; knowledge crew</small></div>
+      </div>
+    </aside>
 
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Support workspace</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg><strong>Answer desk</strong></div>
+        <div class="topbar-actions">
+          <span class="status-pill"><span></span> Your library is ready</span>
+          <button class="button button-dark button-small" id="addArticleBtn" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg><span>Add an article</span></button>
+        </div>
+      </header>
+
+      <div class="page-content" id="find">
+        <div class="page-intro">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-sparkle">✳</span> THE FRIENDLY FIX FINDER</p>
+            <h1>Let’s sort this <span>out.</span></h1>
+            <p class="intro-copy">Describe the issue. We’ll find the best next step from your team’s knowledge.</p>
+          </div>
+          <div class="library-count"><span class="count-icon" aria-hidden="true">✦</span><span><strong id="kbCount">0</strong><small>helpful articles</small></span></div>
+        </div>
+
+        <section class="search-hero" aria-labelledby="ticketLabel">
+          <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+          <div class="hero-topline"><span class="hero-badge"><span aria-hidden="true">✹</span> YOUR RESOLUTION SIDEKICK</span><span class="hero-decoration" aria-hidden="true">✦</span></div>
+          <h2>One good question<br>can change the whole day.</h2>
+          <p>What’s going on with the ticket?</p>
+          <form id="ticketForm" class="ticket-form">
+            <label class="sr-only" id="ticketLabel" for="ticketInput">Describe the support issue</label>
+            <textarea id="ticketInput" rows="3" placeholder="Example: I can connect to the VPN, but company sites won’t load…"></textarea>
+            <div class="composer-footer">
+              <span class="composer-hint"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 12 8l5.5 2-5.5 2-2 5.5L8 12l-5.5-2L8 8Z"/></svg> A few details help us find a better match</span>
+              <button class="button button-primary" id="recommendBtn" type="submit"><span>Find answers</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10 5l5 5-5 5"/></svg></button>
+            </div>
+          </form>
+          <div class="prompt-row" aria-label="Try an example">
+            <span>Try:</span>
+            <button class="prompt-chip" type="button" data-prompt="VPN connects, but I cannot access internal sites">VPN is connected, but…</button>
+            <button class="prompt-chip" type="button" data-prompt="I need to reset my password and unlock my account">Reset a password</button>
+            <button class="prompt-chip" type="button" data-prompt="Email is not syncing on my phone">Email won’t sync</button>
+          </div>
+        </section>
+
+        <div class="workspace-grid">
+          <section class="results-column" aria-labelledby="resultsHeading">
+            <div class="section-heading">
+              <div><p class="section-kicker">A LITTLE KNOW-HOW GOES A LONG WAY</p><h2 id="resultsHeading">Recommended for you <span class="heading-spark">✳</span></h2></div>
+              <span class="result-status" id="recommendStatus">Ready when you are</span>
+            </div>
+            <div id="recommendList" class="recommendation-list" aria-live="polite" aria-atomic="false">
+              <div class="empty-state">
+                <div class="empty-illustration" aria-hidden="true"><span class="empty-star star-a">✦</span><span class="empty-star star-b">✳</span><div class="empty-magnifier"><span></span></div></div>
+                <h3>Your next good answer is in there.</h3>
+                <p>Tell us a little about the ticket and we’ll bring the most useful articles to the top.</p>
+                <span class="empty-tip"><span aria-hidden="true">↗</span> Start with one of the examples above</span>
+              </div>
+            </div>
+          </section>
+
+          <aside class="library-panel" id="library" aria-labelledby="libraryHeading">
+            <div class="library-heading">
+              <div><span class="library-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5Z"/><path d="M4 5.5v16M8 7h8M8 11h7"/></svg></span><div><p class="section-kicker">GOOD THINGS, KEPT CLOSE</p><h2 id="libraryHeading">Knowledge library</h2></div></div>
+              <button class="icon-button" type="button" id="libraryAddBtn" aria-label="Add an article" title="Add an article"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg></button>
+            </div>
+            <p class="library-copy">A little collective wisdom, ready when you need it.</p>
+            <label class="library-search"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.5"/><path d="m13 13 4 4"/></svg><input id="kbSearch" aria-label="Search articles or topics" type="search" placeholder="Search articles or topics" autocomplete="off"><kbd>/</kbd></label>
+            <div class="category-filters" id="categoryFilters" aria-label="Filter articles by category"></div>
+            <div class="library-meta"><span id="libraryMeta">Showing all articles</span><button class="text-button" id="clearFiltersBtn" type="button">Clear</button></div>
+            <ul class="kb-list" id="kbList" aria-label="Knowledge articles"></ul>
+            <div class="library-footer"><span class="footer-spark">✦</span><span>Team knowledge, saved on this device</span></div>
+          </aside>
+        </div>
+        <footer class="page-footer"><span>Made for the people who help people.</span><span>Small steps. Better support. <b>✳</b></span></footer>
+      </div>
+    </main>
+  </div>
+
+  <dialog class="modal" id="articleModal" aria-labelledby="articleModalTitle">
+    <form class="modal-card" id="articleForm">
+      <div class="modal-top"><span class="modal-illustration" aria-hidden="true">✳</span><button type="button" class="icon-button modal-close" id="closeArticleModal" aria-label="Close">×</button></div>
+      <p class="section-kicker">SHARE WHAT YOU KNOW</p><h2 id="articleModalTitle">Add a helpful article</h2><p class="modal-intro">A clear title and a few useful steps can save someone else a lot of time.</p>
+      <label class="field-label" for="articleTitle">Article title</label><input class="text-input" id="articleTitle" name="title" required maxlength="120" placeholder="e.g. Fix a VPN connection">
+      <label class="field-label" for="articleTags">Topics <span>Use commas between topics</span></label><input class="text-input" id="articleTags" name="tags" placeholder="vpn, network, remote work">
+      <label class="field-label" for="articleBody">Helpful steps</label><textarea class="text-input textarea-input" id="articleBody" name="body" required rows="5" placeholder="Write the steps someone should try…"></textarea>
+      <div class="modal-actions"><button class="button button-quiet" type="button" id="cancelArticleBtn">Maybe later</button><button class="button button-primary" type="submit">Save to library <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10 5l5 5-5 5"/></svg></button></div>
+    </form>
+  </dialog>
+
+  <dialog class="modal" id="detailModal" aria-labelledby="detailTitle">
+    <article class="modal-card detail-card">
+      <div class="modal-top"><span class="detail-chip" id="detailCategory">KNOWLEDGE ARTICLE</span><button type="button" class="icon-button modal-close" id="closeDetailModal" aria-label="Close">×</button></div>
+      <h2 id="detailTitle"></h2><div class="detail-tags" id="detailTags"></div><div class="detail-body" id="detailBody"></div>
+      <div class="modal-actions"><button class="button button-quiet" type="button" id="closeDetailBtn">Close</button><button class="button button-primary" type="button" id="copyDetailBtn">Copy helpful steps <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10 5l5 5-5 5"/></svg></button></div>
+    </article>
+  </dialog>
+
+  <div class="toast-region" id="toastRegion" role="status" aria-live="polite"></div>
   <script src="app.js"></script>
 </body>
 </html>

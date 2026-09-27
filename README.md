@@ -1,42 +1,24 @@
-# Knowledge Base Recommendation Tool
+# Patchwork — Knowledge Base Recommender
 
-## Overview
-A web-based tool designed to recommend relevant knowledge base articles
-to service desk agents for faster and more consistent ticket resolution.
+A friendly, browser-based workspace for finding useful support articles and sharing team know-how.
 
-## Problem Statement
-Service desk agents spend time searching for the correct KB articles,
-leading to longer resolution times and inconsistent responses.
+## Preview
 
-## Solution
-This tool suggests relevant KB articles based on keyword matching and
-usage patterns, helping agents resolve tickets more efficiently.
+The library starts with the recommendation area ready for a ticket. Results appear after you submit an issue description.
 
-## Features
-- Keyword-based knowledge article recommendations
-- Simple, lightweight UI
-- Client-side logic using JavaScript
+![Patchwork answer desk](screenshots/Home.png)
 
-## Tech Stack
-- HTML
-- CSS
-- JavaScript
+## What it does
 
-## How to Run
-1. Clone the repository
-2. Open `index.html` in a browser
+- Recommends up to four knowledge articles from a ticket description using transparent keyword matching.
+- Searches and filters the article library by topic.
+- Copies resolution steps into a reply and tracks article use on this device.
+- Lets knowledge managers add articles without leaving the workspace.
+- Starts with a small sample library so the experience is ready to explore.
 
-## Future Enhancements
-- Machine learning integration for advanced pattern recognition
-- Team-wide knowledge sharing capabilities
-- Integration with existing ticketing systems
-- Mobile application development
-- Advanced analytics and reporting features
+## Run it
 
-## Screenshots
+Open index.html in a modern browser. No build step or external service is required.
 
-### Home Screen
-![Home Screen](screenshots/Home.png)
+Articles and usage counts are saved in the browser's local storage on that device. The sample content is there to demonstrate the workflow; add your team's approved guidance before using it for real support.
 
-### Sample Recommendation Output
-![Recommendation Output](screenshots/Result.png)
